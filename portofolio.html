@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grace Anastasya Simanungkalit — ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================
+       DESIGN TOKENS
+    ===================== */
+    :root {
+      --black:    #0d0d0d;
+      --white:    #f5f4f0;
+      --accent:   #5b4fff;
+      --accent-dim: #3d34c4;
+      --muted:    #6b6b6b;
+      --border:   #e0dfd9;
+      --card-bg:  #ffffff;
+      --bg:       #f5f4f0;
+ 
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'Inter', sans-serif;
+ 
+      --max-w: 760px;
+      --section-gap: 5rem;
+    }
+ 
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+ 
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+ 
+    /* =====================
+       LAYOUT
+    ===================== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+ 
+    section {
+      padding: var(--section-gap) 0;
+      border-top: 1px solid var(--border);
+    }
+ 
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+ 
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+ 
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+ 
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+ 
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+ 
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+ 
+    .nav-links a:hover {
+      color: var(--black);
+      text-decoration: none;
+    }
+ 
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-top: none;
+    }
+ 
+    .hero-eyebrow {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+ 
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+ 
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+    }
+ 
+    .hero h1 span {
+      color: var(--accent);
+    }
+ 
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+ 
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+ 
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+ 
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+ 
+    .btn-primary:hover {
+      background: var(--accent-dim);
+      text-decoration: none;
+    }
+ 
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--black);
+      background: transparent;
+    }
+ 
+    .btn-outline:hover {
+      background: var(--card-bg);
+      text-decoration: none;
+      border-color: #ccc;
+    }
+ 
+    /* =====================
+       ABOUT
+    ===================== */
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #333;
+      max-width: 620px;
+    }
+ 
+    .about-text p + p {
+      margin-top: 1rem;
+    }
+ 
+    /* =====================
+       SKILLS
+    ===================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+ 
+    .skill-group {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+ 
+    .skill-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+ 
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+ 
+    .tag {
+      font-size: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      color: #444;
+    }
+ 
+    /* =====================
+       PROJECTS
+    ===================== */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+ 
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+ 
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(91,79,255,0.07);
+    }
+ 
+    .project-card.featured {
+      border-left: 3px solid var(--accent);
+    }
+ 
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+ 
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+ 
+    .project-badge {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+ 
+    .badge-featured {
+      background: #ebe9ff;
+      color: var(--accent-dim);
+    }
+ 
+    .badge-course {
+      background: #f0faf0;
+      color: #2a7a2a;
+    }
+ 
+    .project-desc {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+ 
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+ 
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+ 
+    .project-links a {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+ 
+    /* =====================
+       CONTACT
+    ===================== */
+    .contact-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      max-width: 480px;
+    }
+ 
+    .contact-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+ 
+    .contact-block p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+ 
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+ 
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 14px;
+    }
+ 
+    .contact-row .label {
+      color: var(--muted);
+      min-width: 60px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+ 
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+    }
+ 
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+ 
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .project-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- ==================== NAV ==================== -->
+  <nav>
+    <div class="container">
+      <span class="nav-logo">Grace</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+ 
+  <!-- ==================== HERO ==================== -->
+  <div class="container">
+    <section class="hero">
+      <p class="hero-eyebrow">ML Engineer · NLP · Data Analytics</p>
+      <h1>Hi, I'm<br /><span>Grace Anastasya Simanungkalit</span></h1>
+      <p class="hero-desc">
+        <!-- Tulis 2-3 kalimat tentang siapa kamu dan fokus kamu.
+             Contoh: "Informatics Engineering student at Politeknik Negeri Batam,
+             focused on building ML-powered applications — from NLP classifiers to
+             end-to-end OCR pipelines integrated with REST APIs." -->
+        [DESKRIPSI SINGKAT KAMU]
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="btn btn-primary">See my work</a>
+        <a href="https://github.com/grace031105" target="_blank" class="btn btn-outline">GitHub</a>
+        <a href="https://www.linkedin.com/in/grace-anastasya-simanungkalit-00930b314/" target="_blank" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </section>
+  </div>
+ 
+  <!-- ==================== ABOUT ==================== -->
+  <div class="container">
+    <section id="about">
+      <p class="section-label">About</p>
+      <div class="about-text">
+        <p>
+          D3 Informatics Engineering student at Politeknik Negeri Batam, focusing on machine learning engineering and NLP. I build end-to-end ML systems — from model training and evaluation to API integration and deployment.
+        </p>
+        <p>
+          My work centers on applied NLP: text classification on informal Indonesian language, attention-based sequence models, and OCR pipelines for real-world document parsing. I integrate trained models into production-ready backends using FastAPI and Laravel, and deploy to platforms like Hugging Face Spaces.
+        </p>
+      </div>
+    </section>
+  </div>
+ 
+  <!-- ==================== SKILLS ==================== -->
+  <div class="container">
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+ 
+        <div class="skill-group">
+          <p class="skill-group-title">ML / AI</p>
+          <div class="skill-tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Keras</span>
+            <span class="tag">LSTM</span>
+            <span class="tag">Attention Mechanism</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Text Classification</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <p class="skill-group-title">Data</p>
+          <div class="skill-tags">
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">EDA</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Matplotlib</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <p class="skill-group-title">Backend / API</p>
+          <div class="skill-tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">Python</span>
+            <span class="tag">PHP</span>
+            <span class="tag">REST API</span>
+          </div>
+        </div>
+ 
+        <div class="skill-group">
+          <p class="skill-group-title">Tools</p>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">EasyOCR</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Hugging Face</span>
+            <span class="tag">Jupyter</span>
+          </div>
+        </div>
+ 
+      </div>
+    </section>
+  </div>
+ 
+  <!-- ==================== PROJECTS ==================== -->
+  <div class="container">
+    <section id="projects">
+      <p class="section-label">Projects</p>
+      <div class="projects-list">
+ 
+        <!-- PROJECT 1: FEATURED -->
+        <div class="project-card featured">
+          <div class="project-header">
+            <p class="project-title">CatatanKu — Personal Finance Tracker</p>
+            <span class="project-badge badge-featured">Capstone</span>
+          </div>
+          <p class="project-desc">
+            NLP system for classifying Indonesian financial transactions. Built an LSTM model with a custom Attention Layer (TensorFlow/Keras) trained on 37,000 records across 9 spending categories, achieving 96% validation accuracy. Added an LLM preprocessing layer (Groq API + LLaMA 3.3) to normalize informal user input before classification. Built a full OCR pipeline using OpenCV, EasyOCR and LLM parsing for receipt scanning. Deployed the model via FastAPI and hosted on Hugging Face Spaces as part of a six-person team.
+          </p>
+          <div class="project-meta">
+            <div class="project-stack">
+              <span class="tag">LSTM</span>
+              <span class="tag">Attention Layer</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">EasyOCR</span>
+              <span class="tag">Groq API</span>
+              <span class="tag">Laravel</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Capstone-Catatanku" target="_blank">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </section>
+  </div>
+ 
+  <!-- ==================== CONTACT ==================== -->
+  <div class="container">
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <div class="contact-block">
+        <h3>Let's connect</h3>
+        <p>Terbuka untuk peluang internship dan kolaborasi project.</p>
+        <div class="contact-links">
+          <div class="contact-row">
+            <span class="label">Email</span>
+            <a href="mailto:graceanastasyasimanungkalit@gmail.com">graceanastasyasimanungkalit@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="label">GitHub</span>
+            <a href="https://github.com/grace031105" target="_blank">github.com/grace031105</a>
+          </div>
+          <div class="contact-row">
+            <span class="label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/grace-anastasya-simanungkalit-00930b314/" target="_blank">linkedin.com/in/grace-anastasya-simanungkalit-00930b314/</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+ 
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p>Built with HTML & CSS · Hosted on GitHub Pages</p>
+  </footer>
+ 
+</body>
+</html>
+ 
