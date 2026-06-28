@@ -1,606 +1,435 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grace Anastasya Simanungkalit — ML Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-  <style>
-    /* =====================
-       DESIGN TOKENS
-    ===================== */
-    :root {
-      --black:    #0d0d0d;
-      --white:    #f5f4f0;
-      --accent:   #5b4fff;
-      --accent-dim: #3d34c4;
-      --muted:    #6b6b6b;
-      --border:   #e0dfd9;
-      --card-bg:  #ffffff;
-      --bg:       #f5f4f0;
- 
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'Inter', sans-serif;
- 
-      --max-w: 760px;
-      --section-gap: 5rem;
-    }
- 
-    /* =====================
-       RESET & BASE
-    ===================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-    html { scroll-behavior: smooth; }
- 
-    body {
-      background: var(--bg);
-      color: var(--black);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
- 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
- 
-    /* =====================
-       LAYOUT
-    ===================== */
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
- 
-    section {
-      padding: var(--section-gap) 0;
-      border-top: 1px solid var(--border);
-    }
- 
-    .section-label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
- 
-    /* =====================
-       NAV
-    ===================== */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 0;
-    }
- 
-    nav .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
- 
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--black);
-      letter-spacing: -0.02em;
-    }
- 
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
- 
-    .nav-links a {
-      font-size: 14px;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
- 
-    .nav-links a:hover {
-      color: var(--black);
-      text-decoration: none;
-    }
- 
-    /* =====================
-       HERO
-    ===================== */
-    .hero {
-      padding: 5rem 0 4rem;
-      border-top: none;
-    }
- 
-    .hero-eyebrow {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
- 
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 1px;
-      background: var(--accent);
-    }
-    .profile-pic {
-      width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1.5rem;
-    border: 3px solid var(--border);
-}
- 
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 7vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--black);
-      margin-bottom: 1.5rem;
-    }
- 
-    .hero h1 span {
-      color: var(--accent);
-    }
- 
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 2rem;
-      line-height: 1.8;
-    }
- 
-    .hero-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
- 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.6rem 1.25rem;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
- 
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
- 
-    .btn-primary:hover {
-      background: var(--accent-dim);
-      text-decoration: none;
-    }
- 
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--black);
-      background: transparent;
-    }
- 
-    .btn-outline:hover {
-      background: var(--card-bg);
-      text-decoration: none;
-      border-color: #ccc;
-    }
- 
-    /* =====================
-       ABOUT
-    ===================== */
-    .about-text {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: #333;
-      max-width: 620px;
-    }
- 
-    .about-text p + p {
-      margin-top: 1rem;
-    }
- 
-    /* =====================
-       SKILLS
-    ===================== */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
- 
-    .skill-group {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.1rem 1.25rem;
-    }
- 
-    .skill-group-title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
- 
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
- 
-    .tag {
-      font-size: 12px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2px 8px;
-      color: #444;
-    }
- 
-    /* =====================
-       PROJECTS
-    ===================== */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
- 
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem 1.75rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      position: relative;
-    }
- 
-    .project-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(91,79,255,0.07);
-    }
- 
-    .project-card.featured {
-      border-left: 3px solid var(--accent);
-    }
- 
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 0.6rem;
-    }
- 
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--black);
-      letter-spacing: -0.02em;
-    }
- 
-    .project-badge {
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      white-space: nowrap;
-      font-weight: 500;
-    }
- 
-    .badge-featured {
-      background: #ebe9ff;
-      color: var(--accent-dim);
-    }
- 
-    .badge-course {
-      background: #f0faf0;
-      color: #2a7a2a;
-    }
- 
-    .project-desc {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
- 
-    .project-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
- 
-    .project-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
- 
-    .project-links {
-      display: flex;
-      gap: 0.75rem;
-    }
- 
-    .project-links a {
-      font-size: 13px;
-      color: var(--accent);
-      font-weight: 500;
-    }
- 
-    /* =====================
-       CONTACT
-    ===================== */
-    .contact-block {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem 2.25rem;
-      max-width: 480px;
-    }
- 
-    .contact-block h3 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
-    }
- 
-    .contact-block p {
-      font-size: 0.93rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
- 
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
- 
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 14px;
-    }
- 
-    .contact-row .label {
-      color: var(--muted);
-      min-width: 60px;
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
- 
-    /* =====================
-       FOOTER
-    ===================== */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-      text-align: center;
-    }
- 
-    footer p {
-      font-size: 13px;
-      color: var(--muted);
-    }
- 
-    /* =====================
-       RESPONSIVE
-    ===================== */
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .hero h1 { font-size: 2rem; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .project-header { flex-direction: column; }
-    }
-  </style>
+  <title>Portfolio – Grace Anastasya Simanungkalit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
- 
-  <!-- ==================== NAV ==================== -->
-  <nav>
-    <div class="container">
-      <span class="nav-logo">Grace</span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+<body class="bg-[#f7f1ee] text-stone-600 antialiased">
+
+  <header class="sticky top-0 z-50 border-b border-stone-200 backdrop-blur-md bg-[#f7f1ee]/80">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="#" class="font-display text-stone-800 text-xl font-bold">
+        GRACE'S PORTFOLIO<span class="text-gradient"></span>
+      </a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
+        <li><a href="#about"    class="nav-link hover:text-stone-800 transition-colors">About</a></li>
+        <li><a href="#projects" class="nav-link hover:text-stone-800 transition-colors">Project</a></li>
+        <li><a href="#skills"   class="nav-link hover:text-stone-800 transition-colors">Skills</a></li>
+        <li><a href="#exp"      class="nav-link hover:text-stone-800 transition-colors">Experience</a></li>
+      </ul>
+      <a href="https://mail.google.com/mail/?view=cm&to=graceanastasyasimanungkalit@gmail.com" target="_blank" rel="noopener noreferrer"
+         class="hidden md:inline-flex items-center gap-2 bg-[#c98a8a] hover:bg-[#a9677a] text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors">
+        Contact me
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="mobile-menu md:hidden border-t border-stone-200">
+      <ul class="flex flex-col px-4 py-4 gap-1 text-sm font-medium text-stone-500">
+        <li><a href="#about"    class="mobile-nav-link" onclick="closeMobileMenu()">About</a></li>
+        <li><a href="#projects" class="mobile-nav-link" onclick="closeMobileMenu()">Project</a></li>
+        <li><a href="#skills"   class="mobile-nav-link" onclick="closeMobileMenu()">Skills</a></li>
+        <li><a href="#exp"      class="mobile-nav-link" onclick="closeMobileMenu()">Experience</a></li>
+        <li class="mt-3">
+          <a href="https://mail.google.com/mail/?view=cm&to=graceanastasyasimanungkalit@gmail.com" target="_blank" rel="noopener noreferrer"
+             class="block text-center bg-[#c98a8a] hover:bg-[#a9677a] text-white font-semibold px-4 py-2.5 rounded-full transition-colors">
+            Contact me
+          </a>
+        </li>
       </ul>
     </div>
-  </nav>
- 
-  <!-- ==================== HERO ==================== -->
-  <div class="container">
-    <section class="hero">
-      <p class="hero-eyebrow">ML Engineer · NLP · Data Analytics</p>
-      <img src="foto.jpg" alt="Foto Profil" class="profile-pic" />
-      <h1>Hi, I'm<br /><span>Grace Anastasya Simanungkalit</span></h1>
-      <p class="hero-desc">
-        <!-- Tulis 2-3 kalimat tentang siapa kamu dan fokus kamu.
-             Contoh: "Informatics Engineering student at Politeknik Negeri Batam,
-             focused on building ML-powered applications — from NLP classifiers to
-             end-to-end OCR pipelines integrated with REST APIs." -->
-        [DESKRIPSI SINGKAT KAMU]
-      </p>
-      <div class="hero-links">
-        <a href="#projects" class="btn btn-primary">See my work</a>
-        <a href="https://github.com/grace031105" target="_blank" class="btn btn-outline">GitHub</a>
-        <a href="https://www.linkedin.com/in/grace-anastasya-simanungkalit-00930b314/" target="_blank" class="btn btn-outline">LinkedIn</a>
-      </div>
-    </section>
-  </div>
- 
-  <!-- ==================== ABOUT ==================== -->
-  <div class="container">
-    <section id="about">
-      <p class="section-label">About</p>
-      <div class="about-text">
-        <p>
-          D3 Informatics Engineering student at Politeknik Negeri Batam, focusing on machine learning engineering and NLP. I build end-to-end ML systems — from model training and evaluation to API integration and deployment.
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-[#c98a8a]/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-24 grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
+      <div class="fade-in text-center md:text-left">
+        <span class="inline-block text-[#8a4f63] text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4">
+          IT / Informatics Engineering
+        </span>
+        <h1 class="font-display text-stone-800 text-4xl sm:text-5xl md:text-6xl font-black leading-tight mb-5">
+          Hi, I'm<br>
+          <span class="text-gradient">Grace A Simanungkalit</span>
+        </h1>
+        <p class="text-stone-500 text-base sm:text-lg leading-relaxed mb-8 max-w-md mx-auto md:mx-0">
+          an Informatics Engineering student who enjoys <strong class="text-stone-700">exploring Artificial Intelligence, Machine Learning and Data Analytics</strong>.
+          I'm always looking for opportunities to learn and improve. I enjoy turning what I learn into real projects. This portfolio is a collection of the projects I've built and the skills I'm continuously developing.
         </p>
-        <p>
-          My work centers on applied NLP: text classification on informal Indonesian language, attention-based sequence models, and OCR pipelines for real-world document parsing. I integrate trained models into production-ready backends using FastAPI and Laravel, and deploy to platforms like Hugging Face Spaces.
-        </p>
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+          <a href="#projects"
+             class="bg-[#c98a8a] hover:bg-[#a9677a] text-white font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-full transition-colors text-sm sm:text-base">
+            View Projects
+          </a>
+          <a href="https://drive.google.com/file/d/1o1uQQ2joF-Xf_5qyxUxGT9VgM2qlPNsE/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+             class="border border-stone-300 hover:border-[#c98a8a]/50 text-stone-600 hover:text-stone-800 font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-full transition-colors text-sm sm:text-base">
+            Download CV
+          </a>
+        </div>
+        <div class="flex items-center gap-4 mt-8 justify-center md:justify-start">
+          <span class="text-stone-400 text-sm">Connect with me</span>
+          <a href="https://www.linkedin.com/in/grace-anastasya-simanungkalit-00930b314/" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#c98a8a] transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/grace031105" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#c98a8a] transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
       </div>
-    </section>
-  </div>
- 
-  <!-- ==================== SKILLS ==================== -->
-  <div class="container">
-    <section id="skills">
-      <p class="section-label">Skills</p>
-      <div class="skills-grid">
- 
-        <div class="skill-group">
-          <p class="skill-group-title">ML / AI</p>
-          <div class="skill-tags">
-            <span class="tag">TensorFlow</span>
-            <span class="tag">Keras</span>
-            <span class="tag">LSTM</span>
-            <span class="tag">Attention Mechanism</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Text Classification</span>
+      <div class="fade-in flex justify-center order-first md:order-last">
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#c98a8a]/15 to-[#a9677a]/10 blur-xl"></div>
+          <img
+            src="images/grace.jpeg"
+            alt="Foto profil"
+            class="relative w-48 sm:w-64 md:w-80 rounded-2xl object-cover border border-stone-200"
+          />
+          <div class="absolute -bottom-4 -left-4 bg-white border border-stone-200 rounded-2xl px-3 sm:px-4 py-2 sm:py-3 shadow-xl">
+            <p class="text-xs text-stone-400">Available for</p>
+            <p class="text-xs sm:text-sm font-semibold text-stone-800 mt-0.5">Internship 🚀</p>
           </div>
         </div>
- 
-        <div class="skill-group">
-          <p class="skill-group-title">Data</p>
-          <div class="skill-tags">
-            <span class="tag">Pandas</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">EDA</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Matplotlib</span>
-          </div>
-        </div>
- 
-        <div class="skill-group">
-          <p class="skill-group-title">Backend / API</p>
-          <div class="skill-tags">
-            <span class="tag">FastAPI</span>
-            <span class="tag">Laravel</span>
-            <span class="tag">Python</span>
-            <span class="tag">PHP</span>
-            <span class="tag">REST API</span>
-          </div>
-        </div>
- 
-        <div class="skill-group">
-          <p class="skill-group-title">Tools</p>
-          <div class="skill-tags">
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">EasyOCR</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">Hugging Face</span>
-            <span class="tag">Jupyter</span>
-          </div>
-        </div>
- 
       </div>
-    </section>
-  </div>
- 
-  <!-- ==================== PROJECTS ==================== -->
-  <div class="container">
-    <section id="projects">
-      <p class="section-label">Projects</p>
-      <div class="projects-list">
- 
-        <!-- PROJECT 1: FEATURED -->
-        <div class="project-card featured">
-          <div class="project-header">
-            <p class="project-title">CatatanKu — Personal Finance Tracker</p>
-            <span class="project-badge badge-featured">Capstone</span>
+    </div>
+  </section>
+
+
+  <!-- ABOUT / SPESIALISASI -->
+  <section id="about" class="py-16 sm:py-24 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 sm:mb-16 fade-in">
+        <span class="text-[#8a4f63] text-xs sm:text-sm font-semibold tracking-widest uppercase">About me</span>
+        <h2 class="font-display text-stone-800 text-3xl sm:text-4xl font-bold mt-3">What I Work On</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+        <div class="fade-in bg-white hover:bg-stone-50 border border-stone-200 rounded-2xl p-5 sm:p-6 transition-colors">
+          <div class="w-11 h-11 bg-[#c98a8a]/15 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#c98a8a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
           </div>
-          <p class="project-desc">
-            NLP system for classifying Indonesian financial transactions. Built an LSTM model with a custom Attention Layer (TensorFlow/Keras) trained on 37,000 records across 9 spending categories, achieving 96% validation accuracy. Added an LLM preprocessing layer (Groq API + LLaMA 3.3) to normalize informal user input before classification. Built a full OCR pipeline using OpenCV, EasyOCR and LLM parsing for receipt scanning. Deployed the model via FastAPI and hosted on Hugging Face Spaces as part of a six-person team.
+          <h3 class="text-stone-800 font-semibold text-base sm:text-lg mb-2">Machine Learning & NLP</h3>
+          <p class="text-stone-500 text-sm leading-relaxed mb-4">Built LSTM-based models for Indonesian text classification and an OCR pipeline to extract financial data from receipt images.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">TensorFlow</span>
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">Keras</span>
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">LSTM</span>
+          </div>
+        </div>
+
+        <div class="fade-in bg-white hover:bg-stone-50 border border-stone-200 rounded-2xl p-5 sm:p-6 transition-colors">
+          <div class="w-11 h-11 bg-[#a9677a]/15 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#a9677a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-stone-800 font-semibold text-base sm:text-lg mb-2">Model Deployment & API</h3>
+          <p class="text-stone-500 text-sm leading-relaxed mb-4">Deployed ML models as REST APIs using FastAPI on Hugging Face Spaces, integrated into production apps used by real users.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">FastAPI</span>
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">Hugging Face</span>
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">Python</span>
+          </div>
+        </div>
+
+        <div class="fade-in bg-white hover:bg-stone-50 border border-stone-200 rounded-2xl p-5 sm:p-6 transition-colors sm:col-span-2 md:col-span-1">
+          <div class="w-11 h-11 bg-[#b07d8e]/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-[#6b4a54]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+            </svg>
+          </div>
+          <h3 class="text-stone-800 font-semibold text-base sm:text-lg mb-2">Data Analytics</h3>
+          <p class="text-stone-500 text-sm leading-relaxed mb-4">Performed EDA, data preprocessing, and feature engineering to prepare high-quality datasets — including handling class imbalance for production ML models.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">Pandas</span>
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">NumPy</span>
+            <span class="skill-tag text-xs px-2.5 py-1 rounded-full">Matplotlib</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-16 sm:py-24 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+      <div class="text-center mb-10 sm:mb-16 fade-in">
+        <span class="text-[#8a4f63] text-xs sm:text-sm font-semibold tracking-widest uppercase">Portfolio</span>
+        <h2 class="font-display text-stone-800 text-3xl sm:text-4xl font-bold mt-3">Featured Project</h2>
+        <p class="text-stone-500 mt-2 text-sm sm:text-base max-w-md mx-auto">A project that highlights my technical skills.</p>
+      </div>
+
+      <!-- PROJECT CATATANKU — full width featured -->
+      <div class="fade-in project-card bg-white border border-stone-200 rounded-2xl overflow-hidden group max-w-3xl mx-auto">
+        <div class="relative h-52 sm:h-64 bg-gradient-to-br from-[#c98a8a]/15 to-[#a9677a]/10 overflow-hidden">
+          <img src="images/catatanku.png" alt="CatatanKu" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500" />
+          <span class="absolute top-3 left-3 bg-[#c98a8a] text-white text-xs font-bold px-3 py-1 rounded-full">⭐ Featured</span>
+        </div>
+        <div class="p-5 sm:p-8">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs text-[#8a4f63] font-medium bg-[#c98a8a]/10 px-2.5 py-1 rounded-full">NLP</span>
+            <span class="text-xs text-[#8a4a5e] font-medium bg-[#a9677a]/10 px-2.5 py-1 rounded-full">FastAPI</span>
+            <span class="text-xs text-[#6b4a54] font-medium bg-[#b07d8e]/15 px-2.5 py-1 rounded-full">Hugging Face</span>
+            <span class="text-xs text-[#6b4a54] font-medium bg-[#b07d8e]/15 px-2.5 py-1 rounded-full">Next.js</span>
+          </div>
+          <h3 class="text-stone-800 font-bold text-xl sm:text-2xl mb-3">CatatanKu – Personal Finance Tracker</h3>
+          <p class="text-stone-500 text-sm sm:text-base leading-relaxed mb-6">
+            Deployed NLP classification system for Indonesian financial transactions — LSTM + custom Attention Layer trained on 37K records across 9 imbalanced categories (class weights applied), achieving 97% validation accuracy. Served via FastAPI on Hugging Face Spaces, integrated into team's Next.js production app deployed on Vercel.
           </p>
-          <div class="project-meta">
-            <div class="project-stack">
-              <span class="tag">LSTM</span>
-              <span class="tag">Attention Layer</span>
-              <span class="tag">TensorFlow</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">EasyOCR</span>
-              <span class="tag">Groq API</span>
-              <span class="tag">Laravel</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/Capstone-Catatanku" target="_blank">GitHub ↗</a>
-            </div>
-          </div>
-        </div>
- 
-      </div>
-    </section>
-  </div>
- 
-  <!-- ==================== CONTACT ==================== -->
-  <div class="container">
-    <section id="contact">
-      <p class="section-label">Contact</p>
-      <div class="contact-block">
-        <h3>Let's connect</h3>
-        <p>Terbuka untuk peluang internship dan kolaborasi project.</p>
-        <div class="contact-links">
-          <div class="contact-row">
-            <span class="label">Email</span>
-            <a href="mailto:graceanastasyasimanungkalit@gmail.com">graceanastasyasimanungkalit@gmail.com</a>
-          </div>
-          <div class="contact-row">
-            <span class="label">GitHub</span>
-            <a href="https://github.com/grace031105" target="_blank">github.com/grace031105</a>
-          </div>
-          <div class="contact-row">
-            <span class="label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/grace-anastasya-simanungkalit-00930b314/" target="_blank">linkedin.com/in/grace-anastasya-simanungkalit-00930b314/</a>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://catatanku-app-wybi-three.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-[#c98a8a] hover:bg-[#a9677a] px-4 py-2 rounded-full transition-colors"> Live App</a>
+            <a href="https://grace031105-catatanku-klasifikasi.hf.space/docs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 px-4 py-2 rounded-full transition-colors"> Hugging Face →</a>
+            <a href="https://github.com/Capstone-Catatanku/ai-model" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-semibold text-stone-500 hover:text-stone-800 border border-stone-200 hover:border-stone-400 px-4 py-2 rounded-full transition-colors">GitHub →</a>
           </div>
         </div>
       </div>
-    </section>
-  </div>
- 
-  <!-- ==================== FOOTER ==================== -->
-  <footer>
-    <p>Built with HTML & CSS · Hosted on GitHub Pages</p>
+
+    </div>
+  </section>
+
+
+  <!-- TECH STACK / SKILLS -->
+  <!--
+    Kenapa ada section ini?
+    Section Projects sekarang hanya 1 kartu (CatatanKu).
+    Tanpa section tambahan, halaman akan terasa kosong di tengah.
+    Tech Stack mengisi ruang itu sekaligus memberi info konkret
+    yang relevan untuk recruiter AI/ML Engineer.
+  -->
+  <section id="skills" class="py-16 sm:py-24 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+      <div class="text-center mb-10 sm:mb-16 fade-in">
+        <span class="text-[#8a4f63] text-xs sm:text-sm font-semibold tracking-widest uppercase">Tech Stack</span>
+        <h2 class="font-display text-stone-800 text-3xl sm:text-4xl font-bold mt-3">Tools & Technologies</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 fade-in">
+
+        <!-- AI / ML -->
+        <div class="bg-white border border-stone-200 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-stone-800 font-semibold text-sm uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#c98a8a] inline-block"></span>
+            AI / Machine Learning
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Python</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">TensorFlow</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Keras</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Scikit-learn</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">LSTM</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">EasyOCR</span>
+          </div>
+        </div>
+
+        <!-- Data -->
+        <div class="bg-white border border-stone-200 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-stone-800 font-semibold text-sm uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#a9677a] inline-block"></span>
+            Data & Analytics
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Pandas</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">NumPy</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Matplotlib</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Google Colab</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Jupyter</span>
+          </div>
+        </div>
+
+        <!-- Deploy & Tools -->
+        <div class="bg-white border border-stone-200 rounded-2xl p-5 sm:p-6">
+          <h3 class="text-stone-800 font-semibold text-sm uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#6b4a54] inline-block"></span>
+            Deployment & Tools
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">FastAPI</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Hugging Face</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Git</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">GitHub</span>
+            <span class="skill-tag text-sm px-3 py-1.5 rounded-full">Laravel</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PENGALAMAN -->
+  <section id="exp" class="py-16 sm:py-24 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+      <div class="text-center mb-10 sm:mb-16 fade-in">
+        <span class="text-[#8a4f63] text-xs sm:text-sm font-semibold tracking-widest uppercase">Journey</span>
+        <h2 class="font-display text-stone-800 text-3xl sm:text-4xl font-bold mt-3">Education and Experience</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">
+
+        <!-- PENDIDIKAN -->
+        <div class="fade-in">
+          <h3 class="text-stone-500 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-6 sm:mb-8 flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#c98a8a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+            </svg>
+            Education
+          </h3>
+          <div class="relative pl-6 border-l border-stone-200 space-y-8">
+            <div class="relative">
+              <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-[#c98a8a] border-2 border-[#f7f1ee]"></div>
+              <span class="text-[#8a4f63] text-xs font-medium">2024 – Present</span>
+              <h4 class="text-stone-800 font-semibold mt-1">Diploma in Informatics Engineering</h4>
+              <p class="text-stone-500 text-sm mt-0.5">Politeknik Negeri Batam</p>
+              <p class="text-stone-400 text-sm mt-2 leading-relaxed">Focusing on Artificial Intelligence, Machine Learning, and Web Development. Currently preparing a final-year project involving machine learning for personal finance applications.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PENGALAMAN -->
+        <div class="fade-in">
+          <h3 class="text-stone-500 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-6 sm:mb-8 flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#c98a8a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Experience & Certifications
+          </h3>
+          <div class="relative pl-6 border-l border-stone-200 space-y-8">
+            <div class="relative">
+              <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-[#a9677a] border-2 border-[#f7f1ee]"></div>
+              <span class="text-[#8a4f63] text-xs font-medium">June, 20th  2026</span>
+              <h4 class="text-stone-800 font-semibold mt-1">Capstone Project – CatatanKu</h4>
+              <p class="text-stone-500 text-sm mt-0.5">AI/ML Engineer · Team of 6</p>
+              <p class="text-stone-400 text-sm mt-2 leading-relaxed">Developed an Indonesian NLP classification model and OCR pipeline, deployed the FastAPI backend on Hugging Face Spaces, and integrated it into the team's production-ready Next.js application.</p>
+            </div>
+            <div class="relative">
+              <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-stone-300 border-2 border-[#f7f1ee]"></div>
+              <span class="text-stone-400 text-xs font-medium">2026</span>
+              <h4 class="text-stone-800 font-semibold mt-1">Dicoding – Machine Learning Path</h4>
+              <p class="text-stone-500 text-sm mt-0.5">Self-paced Online Program</p>
+              <p class="text-stone-400 text-sm mt-2 leading-relaxed">Completed end-to-end machine learning training covering data preprocessing, exploratory data analysis, feature engineering, and image classification</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!--
+  ================================================================
+  BLOG SECTION — dinonaktifkan sementara
+  Uncomment seluruh block ini kalau sudah ada konten tulisan
+  ================================================================
+
+  <section id="blog" class="py-16 sm:py-24 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-16 fade-in">
+        <div>
+          <span class="text-[#8a4f63] text-xs sm:text-sm font-semibold tracking-widest uppercase">Tulisan</span>
+          <h2 class="font-display text-stone-800 text-3xl sm:text-4xl font-bold mt-3">Blog</h2>
+          <p class="text-stone-500 mt-2 text-sm sm:text-base">Catatan teknis, belajar, dan insight dari project nyata.</p>
+        </div>
+        <a href="#" class="text-sm text-[#c98a8a] hover:text-[#a9677a] font-medium transition-colors shrink-0">Semua tulisan ></a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        ISI BLOG CARD DI SINI
+      </div>
+    </div>
+  </section>
+  -->
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-stone-200 py-10 sm:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <p class="text-stone-400 text-sm text-center sm:text-left">© 2026 Grace Anastasya Simanungkalit.</p>
+      <div class="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+        <a href="https://mail.google.com/mail/?view=cm&to=graceanastasyasimanungkalit@gmail.com" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#c98a8a] text-sm transition-colors">Email</a>
+        <a href="https://www.linkedin.com/in/grace-anastasya-simanungkalit-00930b314/" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#c98a8a] text-sm transition-colors">LinkedIn</a>
+        <a href="https://github.com/grace031105" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#c98a8a] text-sm transition-colors">GitHub</a>
+        <!--<a href="#" class="text-stone-400 hover:text-[#c98a8a] text-sm transition-colors">Hugging Face</a>-->
+      </div>
+    </div>
   </footer>
- 
+
+
+  <script>
+    // ============================================================
+    // HAMBURGER MENU
+    // Kenapa: di mobile, kita gak mau navbar penuh — terlalu sempit.
+    // Jadi kita sembunyikan menu dan tampilkan hanya saat tombol diklik.
+    //
+    // Cara kerja:
+    // - getElementById() → cari elemen HTML berdasarkan id-nya
+    // - addEventListener('click', ...) → pasang "pendengar" event klik
+    // - classList.toggle('open') → kalau class 'open' ada, hapus. Kalau tidak ada, tambahkan.
+    //   Class 'open' inilah yang dikontrol di style.css untuk show/hide menu.
+    // ============================================================
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active');
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      menuBtn.classList.remove('active');
+    }
+
+    // Tutup menu kalau user klik di luar area navbar
+    // contains() → cek apakah elemen yang diklik ada di dalam menuBtn atau mobileMenu
+    document.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    // ============================================================
+    // FADE-IN SAAT SCROLL
+    // Kenapa: elemen muncul smooth saat di-scroll ke, bukan langsung nongol semua.
+    //
+    // Cara kerja:
+    // - querySelectorAll('.fade-in') → ambil semua elemen dengan class 'fade-in'
+    // - IntersectionObserver → browser API yang "mengamati" apakah elemen
+    //   masuk ke area yang terlihat (viewport) atau tidak.
+    // - threshold: 0.1 → trigger kalau 10% elemen sudah kelihatan
+    // - entry.isIntersecting → true kalau elemen sedang kelihatan di layar
+    // - classList.add('visible') → tambahkan class 'visible' yang trigger animasi di CSS
+    // - observer.unobserve() → stop mengamati setelah animasi selesai (efisiensi)
+    // ============================================================
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
- 

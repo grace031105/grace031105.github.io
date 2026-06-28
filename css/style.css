@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* =============================================
+   GRADIENT TEKS
+   Mauve -> Plum (dusty rose, soft tapi profesional)
+============================================= */
+.text-gradient {
+  background: linear-gradient(135deg, #c98a8a, #a9677a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   ANIMASI GARIS BAWAH NAVBAR (desktop)
+============================================= */
+.nav-link::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #a9677a;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* =============================================
+   HAMBURGER BUTTON
+   3 garis yang berubah jadi X saat active
+============================================= */
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #a99499; /* warm mauve-grey */
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Saat button active: garis tengah hilang,
+   garis atas & bawah membentuk X */
+.menu-btn.active .hamburger-line:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+.menu-btn.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.menu-btn.active .hamburger-line:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+/* =============================================
+   MOBILE MENU DROPDOWN
+============================================= */
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.mobile-menu.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* Link di dalam mobile menu */
+.mobile-nav-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #a99499;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-nav-link:hover {
+  background: rgba(169, 103, 122, 0.1);
+  color: #3d3539;
+}
+
+/* =============================================
+   PROJECT CARD — EFEK HOVER NAIK
+============================================= */
+.project-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(169, 103, 122, 0.15);
+}
+
+/* =============================================
+   FADE-IN SAAT SCROLL
+============================================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   HERO BACKGROUND — DOT PATTERN
+   Cream-pink background, dot mauve lembut
+============================================= */
+.hero-bg {
+  background-color: #f7f1ee;
+  background-image: radial-gradient(rgba(169, 103, 122, 0.15) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* =============================================
+   SKILL TAG / BADGE
+============================================= */
+.skill-tag {
+  background: rgba(169, 103, 122, 0.1);
+  border: 1px solid rgba(169, 103, 122, 0.25);
+  color: #8a4f63;
+}
+
+/* =============================================
+   CUSTOM SCROLLBAR (Webkit only)
+============================================= */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #f7f1ee; }
+::-webkit-scrollbar-thumb { background: #a9677a; border-radius: 4px; }
